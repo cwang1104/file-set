@@ -1,0 +1,40 @@
+# 这里修改集群的名字，如果要想搭建集群，所有集群中的每个节点名字都必须一样
+cluster.name: es-cluster
+# 每个集群中都有节点，这里设置每个节点的名字，节点与节点的名字必须不一样
+node.name: es02
+# 这里修改为每台节点数据存放的目录
+# path.data: /home/estestuser/esdata
+# 这里修改为每台节点日志的存放目录
+# path.logs: /home/estestuser/eslogs
+
+# docker部署数据、日志、配置都会默认都放到/usr/share/elasticsearch/下
+
+# 这一行改成 0.0.0.0 意思是允许所有节点访问
+network.host: 0.0.0.0
+# 配置集群节点集合
+discovery.seed_hosts: ["es01", "es02", "es03"]
+# 集群选举设置
+cluster.initial_master_nodes: ["es01", "es02", "es03"]
+# 开启跨域访问
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+bootstrap.memory_lock: true
+# 设置java jvm内存参数，设定初始堆内存及最大堆内存
+#"ES_JAVA_OPTS=-Xms512m -Xmx512m" 在jvm.options中设置
+
+
+#安全验证配置项
+# 启用X-Pack安全特性，包括用户认证、角色授权等
+xpack.security.enabled: true
+# 使用基本许可证类型进行自生成许可。
+xpack.license.self_generated.type: basic
+# 启用传输层的SSL加密，以确保数据在传输过程中的安全性。
+xpack.security.transport.ssl.enabled: true
+# 设置SSL验证模式为证书验证，确保客户端和服务器之间的连接是安全的。
+xpack.security.transport.ssl.verification_mode: certificate
+#  指定用于SSL加密的密钥库文件路径，该文件包含了用于身份验证的公钥和私钥。
+xpack.security.transport.ssl.keystore.path: elastic-certificates.p12
+# 指定用于SSL加密的信任库文件路径，该文件包含了用于验证服务器身份的公钥。
+xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
+
+

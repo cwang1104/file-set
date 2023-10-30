@@ -1,0 +1,18 @@
+# Default Kibana configuration for docker target
+server.host: "0.0.0.0"
+server.shutdownTimeout: "5s"
+elasticsearch.hosts: [ "http://es01:9200" ]
+server.publicBaseUrl: "http://192.168.94.128:15601"
+#用于设置Elasticsearch中已保存对象的加密密钥。已保存对象是指索引、模板、映射等数据结构。通过使用这个配置项，可以确保这些对象在存储和传输过程中的安全性
+xpack.encryptedSavedObjects.encryptionKey: dcbf819d8874e8242eaf107d538fe874
+#用于设置Elasticsearch报告功能的加密密钥。报告功能提供了对查询结果的可视化展示和导出功能，包括生成报表、图表等。通过使用这个配置项，可以确保报告数据在传输和存储过程中的安全性。
+xpack.reporting.encryptionKey: ba2d98e6dad4fa73d77f5f34a568cfdd
+# 用于设置Elasticsearch安全功能的加密密钥。安全功能包括访问控制、角色权限管理等，用于保护Elasticsearch集群的数据和资源。通过使用这个配置项，可以确保安全相关的数据在传输和存储过程中的安全性。
+xpack.security.encryptionKey: 3871dfc1bd945e1141364e4244800b39
+# 中文
+i18n.locale: "zh-CN"
+# 连接配置
+# 初始化es密码时的内置的kibana用户名kibana
+elasticsearch.username: kibana
+# 初始化es密码时的内置的kibana用户名kibana时自己设置的密码
+elasticsearch.password: password
