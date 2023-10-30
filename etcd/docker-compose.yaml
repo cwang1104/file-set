@@ -1,0 +1,29 @@
+version: '3'
+services:
+  etcd:
+      image: 'bitnami/etcd:3.5'
+      container_name: etcd
+      restart: always
+      #把宿主机的etcd相关目录user也设为1000
+      user: "1000:1000"
+      environment:
+        ALLOW_NONE_AUTHENTICATION: yes
+        #ETCD_LISTEN_CLIENT_URLS: http://192.168.94.128:12379
+        # ETCD_ADVERTISE_CLIENT_URLS: http://192.168.94.128:12379
+        # ETCD_LISTEN_CLIENT_URLS: http://0.0.0.0:2379
+        # ETCD_DATA_DIR: "/bitnami/etcd/data"
+        # ETCD_ADVERTISE_CLIENT_URLS: http://0.0.0.0:2379
+        #ETCD_ADVERTISE_CLIENT_URLS: http://192.168.94.128:2379
+        # ETCD_LISTEN_CLIENT_URLS: http://0.0.0.0:2379
+        # ETCD_LISTEN_PEER_URLS: http://0.0.0.0:2380
+        # ETCD_INITIAL_ADVERTISE_PEER_URLS: http://0.0.0.0:2380
+        # ALLOW_NONE_AUTHENTICATION: yes
+        # ETCD_INITIAL_CLUSTER: node1:http://0.0.0.0:2380
+        # ETCD_NAME: node1
+      ports:
+        - 12379:2379
+        - 12380:2380
+      volumes:
+        - "/home/xxx/workspace/dockerCompose/etcd/data:/bitnami/etcd/data"
+        - "/home/xxx/workspace/dockerCompose/etcd/conf:/opt/bitnami/etcd/conf"
+      command: etcd --config-file=/opt/bitnami/etcd/conf/etcd.conf

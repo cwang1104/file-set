@@ -1,0 +1,37 @@
+version: '3'
+services:
+  mysql:
+    image: "mysql:8.0"
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "13306:3306"
+    volumes:
+      - "/home/wangli/workspace/dockerCompose/mysql/data:/var/lib/mysql"
+      - "/home/wangli/workspace/dockerCompose/mysql/conf:/etc/mysql/conf.d"
+      - "/home/wangli/workspace/dockerCompose/mysql/log:/var/log/mysql"
+
+  redis:
+    image: "redis:7.0"
+    container_name: redis
+    restart: always
+    ports:
+      - "16379:6379"
+    volumes:
+      - "/home/wangli/workspace/dockerCompose/redis/data:/data"
+      - "/home/wangli/workspace/dockerCompose/redis/config/redis.conf:/usr/local/redis/config/redis.conf"
+        #   - "/home/wangli/workspace/dockerCompose/redis/logs:/logs"
+    command: redis-server /usr/local/redis/config/redis.conf
+  
+  #asynq界面管理工具
+  asynqmon:
+    image: hibiken/asynqmon:latest
+    container_name: asynqmon
+    ports:
+      - 18080:8080
+    environment:
+      REDIS_ADDR: redis:6379
+      REDIS_PASSWORD: 123456
+      REDIS_DB: 1

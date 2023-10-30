@@ -11,9 +11,9 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /home/wangli/workspace/elastic/elastic11/data:/usr/share/elasticsearch/data
-      - /home/wangli/workspace/elastic/elastic11/config:/usr/share/elasticsearch/config
-      - /home/wangli/workspace/elastic/elastic11/logs:/usr/share/elasticsearch/logs
+      - /home/xxx/workspace/elastic/elastic11/data:/usr/share/elasticsearch/data
+      - /home/xxx/workspace/elastic/elastic11/config:/usr/share/elasticsearch/config
+      - /home/xxx/workspace/elastic/elastic11/logs:/usr/share/elasticsearch/logs
     ports:
       - 19200:9200
 
@@ -27,9 +27,9 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /home/wangli/workspace/elastic/elastic22/data:/usr/share/elasticsearch/data
-      - /home/wangli/workspace/elastic/elastic22/config:/usr/share/elasticsearch/config
-      - /home/wangli/workspace/elastic/elastic22/logs:/usr/share/elasticsearch/logs
+      - /home/xxx/workspace/elastic/elastic22/data:/usr/share/elasticsearch/data
+      - /home/xxx/workspace/elastic/elastic22/config:/usr/share/elasticsearch/config
+      - /home/xxx/workspace/elastic/elastic22/logs:/usr/share/elasticsearch/logs
     ports:
       - 29200:9200
 
@@ -43,9 +43,9 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /home/wangli/workspace/elastic/elastic33/data:/usr/share/elasticsearch/data
-      - /home/wangli/workspace/elastic/elastic33/config:/usr/share/elasticsearch/config
-      - /home/wangli/workspace/elastic/elastic33/logs:/usr/share/elasticsearch/logs
+      - /home/xxx/workspace/elastic/elastic33/data:/usr/share/elasticsearch/data
+      - /home/xxx/workspace/elastic/elastic33/config:/usr/share/elasticsearch/config
+      - /home/xxx/workspace/elastic/elastic33/logs:/usr/share/elasticsearch/logs
     ports:
       - 39200:9200
 
@@ -58,7 +58,7 @@ services:
     ports:
       - 15601:5601
     volumes:
-      - /home/wangli/workspace/elastic/kibana/config:/usr/share/kibana/config
+      - /home/xxx/workspace/elastic/kibana/config:/usr/share/kibana/config
 
 networks:
   default:
