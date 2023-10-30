@@ -1,0 +1,37 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: "3"
+services:
+  kafka:
+    image: docker.io/bitnami/kafka:3.6
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      # KRaft settings
+      - KAFKA_CFG_NODE_ID=0
+      # 指定服务器在KRaft模式下的角色。broker（处理客户端请求及管理分区副本）、controller（只管理集群及协调选举）
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      # 在raft模式下，参与选举和和决策的控制器节点 brockerID@hostname:port 格式，多个以，分割
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      # Listeners
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      # 用于告诉客户端和其他服务器可以通过地址和端口访问当前服务器
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:9092
+      # 配置不同的监听器名称选择的安全协议
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      # kafka内部的broker监听名称
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      # Kraft模式下，服务器之间的通信使用哪个监听器，每个可以有多个监听器
+      # 监听器名称必须是在KAFKA_CFG_LISTENERS中定义的监听器
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+volumes:
+  kafka_data:
+    driver: local
+
+
+
+
+
